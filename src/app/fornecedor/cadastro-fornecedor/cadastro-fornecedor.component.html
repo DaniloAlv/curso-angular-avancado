@@ -1,0 +1,144 @@
+<div class="container main-container">
+    <h1>Novo Fornecedor</h1>
+    <hr>
+
+    <div class="row">
+        <div class="col-md-10">
+            <form novalidate (ngSubmit)="cadastrarFornecedor()" [formGroup]="fornecedorForm">
+                <div class="alert alert-danger" *ngIf="errors.length > 0">
+                    <h3 id="msgRetorno">Ops! Erros foram encontrados.</h3>
+                    <ul>
+                        <li *ngFor="let error of errors">
+                            {{ error }}
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Nome</label>
+                    <div>
+                        <input type="text" class="form-control" formControlName="nome"
+                            [ngClass]="{'is-invalid': displayMessage['nome']}">
+                        <span class="text-danger" *ngIf="displayMessage['nome']">
+                            <p [innerHTML]="displayMessage['nome']"></p>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Documento</label>
+                    <div>
+                        <input type="text" class="form-control" formControlName="documento"
+                            [textMask]="this.tipoFornecedorForm().value == 1 ? {mask: MASKS['cpf'].textMask} : {mask: MASKS['cnpj'].textMask}"
+                            [ngClass]="{'is-invalid': displayMessage['documento']}">
+                        <span class="text-danger" *ngIf="displayMessage['documento']">
+                            <p [innerHTML]="displayMessage['documento']"></p>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group form-check">
+                    <label class="control-label">
+                        <input type="checkbox" class="form-check-input" formControlName="ativo">Ativo?
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Tipo Fornecedor</label>
+                    <div>
+                        <input type="radio" value="1" class="form-control" formControlName="tipoFornecedor">Pessoa
+                        Física<br>
+                        <input type="radio" value="2" class="form-control" formControlName="tipoFornecedor">Pessoa
+                        Jurídica
+
+                    </div>
+                </div>
+
+                <h3>Endereço</h3>
+                <hr>
+                <div formGroupName="endereco">
+                    <div class="form-group">
+                        <label class="control-label">Logradouro</label>
+                        <div>
+                            <input type="text" class="form-control" formControlName="logradouro"
+                                [ngClass]="{'is-invalid': displayMessage['logradouro']}">
+                            <span class="text-danger" *ngIf="displayMessage['logradouro']">
+                                <p [innerHTML]="displayMessage['logradouro']"></p>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Número</label>
+                        <div>
+                            <input type="text" class="form-control" formControlName="numero"
+                                [ngClass]="{'is-invalid': displayMessage['numero']}">
+                            <span class="text-danger" *ngIf="displayMessage['numero']">
+                                <p [innerHTML]="displayMessage['numero']"></p>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Bairro</label>
+                        <div>
+                            <input type="text" class="form-control" formControlName="bairro"
+                                [ngClass]="{'is-invalid': displayMessage['bairro']}">
+                            <span class="text-danger" *ngIf="displayMessage['bairro']">
+                                <p [innerHTML]="displayMessage['bairro']"></p>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Complemento</label>
+                        <div>
+                            <input type="text" class="form-control" formControlName="complemento">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">CEP</label>
+                        <div>
+                            <input type="text" class="form-control" formControlName="cep"
+                                (blur)="consultaCEP($event.target.value)" cep [textMask]="{mask: MASKS['cep'].textMask}"
+                                [ngClass]="{'is-invalid': displayMessage['cep']}">
+                            <span class="text-danger" *ngIf="displayMessage['cep']">
+                                <p [innerHTML]="displayMessage['cep']"></p>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Estado</label>
+                        <div>
+                            <input type="text" class="form-control" formControlName="uf"
+                                [ngClass]="{'is-invalid': displayMessage['uf']}">
+                            <span class="text-danger" *ngIf="displayMessage['uf']">
+                                <p [innerHTML]="displayMessage['uf']"></p>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Cidade</label>
+                        <div>
+                            <input type="text" class="form-control" formControlName="cidade"
+                                [ngClass]="{'is-invalid': displayMessage['cidade']}">
+                            <span class="text-danger" *ngIf="displayMessage['cidade']">
+                                <p [innerHTML]="displayMessage['cidade']"></p>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" class="btn btn-info" [routerLink]="['/fornecedor/todos']">Voltar</button>&nbsp;
+                        <button type="submit" class="btn btn-success">Cadastrar</button>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="container main-container">
+    <h4 style="padding-top: 30px">Editar {{ produto.nome }} </h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form enctype="multipart/form-data" [formGroup]="produtoForm" (ngSubmit)="editarProduto()">
+    
+                <div class="alert alert-danger" *ngIf="errors.length > 0">
+                    <h3 id="msgRetorno">Ops! Algo deu errado!</h3>
+                    <ul>
+                        <li *ngFor="let error of errors">{{ error }}</li>
+                    </ul>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Fornecedor</label>
+                    <select class="form-control" formControlName="fornecedor" [ngClass]="{'is-invalid': displayMessage['fornecedor'] }">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Nome</label>
+                    <input class="form-control" formcontrolName="nome" [ngClass]="{'is-invalid': displayMessage['nome'] }"/>
+                    <span class="text-danger" *ngIf="displayMessage['nome']">
+
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Descricao" class="control-label"></label>
+                    <textarea cols="40" rows="5" class="form-control" formControlName="descricao" [ngClass]="{'is-invalid': displayMessage['descricao'] }"></textarea>
+                    <span class="text-danger" *ngIf="displayMessage['descricao']">
+
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Valor</label>
+                    <input class="form-control" formControlName="valor" [ngClass]="{'is-invalid': displayMessage['valor'] }"/>
+                    <span class="text-danger" *ngIf="displayMessage['valor']">
+
+                    </span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" formControlName="ativo" type="checkbox" /> Ativo?
+                    </label>
+                </div>
+
+                <div *ngIf="!imagemPreview" class="form-group">
+                    <label class="control-label">Imagem Atual</label><br />
+                    <img [src]="imagemOriginalSrc" width="70" height="100"/>
+                </div>
+                <div *ngIf="imagemPreview" class="form-group">
+                    <label class="control-label">Nova Imagem</label><br />
+                    <img [src]="imagemPreview" width="70" height="100"/>
+                </div>
+    
+                <div class="form-group">
+                    <label class="control-label">Imagem</label>
+    
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="imagem" formControlName="imagem" #fileInput (change)="uploadFile(fileInput.files)" [ngClass]="{'is-invalid': displayMessage['imagem'] }"/>
+                        <label data-browse="Procurar" style="width: 400px" class="custom-file-label"></label>                       
+                    </div>
+    
+                    <span class="text-danger" *ngIf="displayMessage['imagem']">
+                        <p [innerHTML]="displayMessage['imagem']"></p>
+                    </span>
+                </div>
+    
+                <div class="form-group">
+                    <input type="submit" value="Atualizar" class="btn btn-primary" />
+                    <input type="button" value="Voltar" class="btn btn-info" (click)="back()" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

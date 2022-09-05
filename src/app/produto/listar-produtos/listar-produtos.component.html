@@ -1,0 +1,52 @@
+<div class="container main-container">    
+    <div style="display: flex; justify-content: space-between;">
+        <h1>Produtos</h1>    
+        <a class="btn btn-primary" (click)="navegarParaCadastroProduto()" style="height: 40px;">Adicionar Produto <span class="fa fa-plus"></span></a>
+    </div>
+    <hr style="border: 2px solid;">
+
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th></th>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Fornecedor
+                </th>
+                <th>
+                    Valor
+                </th>
+                <th>
+                    Ativo?
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let prod of produtos">
+                <td>
+                    <img src="{{ imagens }}{{prod.imagem}}" alt="{{prod.nome}}" width="80" height="90" />
+                </td>
+                <td>
+                    {{ prod.nome }
+                </td>
+                <td>
+                    {{ prod.fornecedor.nome }}
+                </td>
+                <td>
+                    {{ prod.valor }}
+                </td>
+                <td>
+                    {{ prod.ativo }}
+                </td>
+                <td class="text-right">
+                    <a class="btn btn-info" title="Detalhes" [routerLink]="['/produto/detalhes', produto.id]"><span class="fa fa-info"></span></a>
+                    <a class="btn btn-warning" title="Editar" [routerLink]="['/produto/editar', produto.id]"><span class="fa fa-pencil-alt"></span></a>
+                    <a class="btn btn-danger" title="Deletar" [routerLink]="['/produto/excluir', produto.id]"><span class="fa fa-trash"></span></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

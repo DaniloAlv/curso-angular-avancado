@@ -1,0 +1,41 @@
+<div class="container main-container">
+	<h3 style="padding-top: 50px">Tem certeza que deseja deletar {{ fornecedor.nome }}?</h3>
+	<hr />
+	<div class="row">
+		<div class="col col-md-6">
+			<dl>
+				<dt>
+					Nome
+				</dt>
+				<dd>
+					{{ fornecedor.nome }}
+				</dd>
+				<dt>
+					Documento
+				</dt>
+				<dd>
+					{{ fornecedor.documento}}
+				</dd>
+				<dt>
+					Ativo
+				</dt>
+				<dd>
+					{{ fornecedor.ativo }}
+				</dd>
+				<dt>
+					Tipo Fornecedor
+				</dt>
+				<dd>
+					{{ fornecedor.tipoFornecedor }}
+				</dd>
+			</dl>
+	
+			<div class="row">
+				<iframe width="100%" height="450" frameborder="0" style="border: 0; padding-bottom: 50px;" [src]="enderecoMap" allowfullscreen></iframe>
+			</div>
+	
+			<a class="btn btn-info" href="javascript:window.history.back();">Voltar</a>
+			<input type="submit" value="Deletar" class="btn btn-danger" (click)="excluirFornecedor()" />
+		</div>
+	</div>
+</div>

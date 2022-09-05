@@ -1,0 +1,51 @@
+<div class="container main-container">
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-climbing-dot" fullScreen="true">
+		<p style="color: white">Carregando... </p>
+	</ngx-spinner>
+    
+    <div style="display: flex; justify-content: space-between;">
+        <h1>Fornecedores</h1>
+        <a class="btn btn-primary" style="height: 40px;" (click)="navegarParaCadastroFornecedor()">Adicionar Fornecedor <span class="fa fa-plus"></span></a>
+    </div>
+    <hr style="border: 2px solid;">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Documento
+                </th>
+                <th>
+                    Ativo?
+                </th>
+                <th>
+                    Tipo Fornecedor
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let f of fornecedores">
+                <td>
+                    {{ f.nome }}
+                </td>
+                <td>
+                    {{ f.tipoFornecedor == 1 ? (f.documento | cpf) : (f.documento | cnpj) }}
+                </td>
+                <td>
+                    <input type="checkbox" disabled [checked]="f.ativo" class="check-box">
+                </td>
+                <td>
+                    {{ f.tipoFornecedor | formataTipoFornecedor }}
+                </td>
+                <td class="text-right">
+                    <a class="btn btn-info" [routerLink]="['/fornecedor/detalhes', f.id]"><span class="fa fa-info"></span></a>&nbsp;
+                    <a class="btn btn-warning" [routerLink]="['/fornecedor/editar', f.id]"><span class="fa fa-pencil-alt"></span></a>&nbsp;
+                    <a class="btn btn-danger" [routerLink]="['/fornecedor/excluir', f.id]"><span class="fa fa-trash"></span></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

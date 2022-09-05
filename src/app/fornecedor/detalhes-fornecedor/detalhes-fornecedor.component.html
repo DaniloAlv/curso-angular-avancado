@@ -1,0 +1,105 @@
+<div class="container main-container">
+    <h4 style="padding-top: 50px">Detalhes de {{fornecedor.nome}}</h4>
+    <hr />
+    
+    <div class="row">
+        <div class="col col-md-6">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Nome
+                </dt>
+                <dd class="col-sm-10">
+                    {{fornecedor.nome}}
+                </dd>
+                <dt class="col-sm-2">
+                    Documento
+                </dt>
+                <dd class="col-sm-10">
+                    {{fornecedor.documento}}
+                </dd>
+                <dt class="col-sm-2">
+                    Ativo
+                </dt>
+                <dd class="col-sm-10">
+                    <input [checked]="fornecedor.ativo" class="check-box" disabled="disabled" type="checkbox">
+                </dd>
+                <dt class="col-sm-2">
+                    Tipo Fornecedor
+                </dt>
+                <dd class="col-sm-10">
+                    {{fornecedor.tipoFornecedor}}
+                </dd>
+            </dl>
+            <a class="btn btn-info" href="javascript:window.history.back();">Voltar</a>
+            <a class="btn btn-dark">Editar</a>
+    
+            <div style="padding-top: 20px">
+                <div>
+                    <hr />
+                    <h4>
+                        Endereço
+                    </h4>
+                </div>
+                <table class="table table-hover" ngIf="">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>
+                                Logradouro
+                            </th>
+                            <th>
+                                Nº
+                            </th>
+                            <th>
+                                Complemento
+                            </th>
+                            <th>
+                                CEP
+                            </th>
+                            <th>
+                                Bairro
+                            </th>
+                            <th>
+                                Cidade
+                            </th>
+                            <th>
+                                Estado
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                {{fornecedor.endereco.logradouro}}
+                            </td>
+                            <td>
+                                {{fornecedor.endereco.numero}}
+                            </td>
+                            <td>
+                                {{fornecedor.endereco.complemento}}
+                            </td>
+                            <td>
+                                {{fornecedor.endereco.cep}}
+                            </td>
+                            <td>
+                                {{fornecedor.endereco.bairro}}
+                            </td>
+                            <td>
+                                {{fornecedor.endereco.cidade}}
+                            </td>
+                            <td>
+                                {{fornecedor.endereco.uf}}
+                            </td>
+                            <td>
+                                <a class="btn btn-info"><i title="Editar" class="fa fa-pencil-alt"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <iframe width="100%" height="450" frameborder="0" style="border: 0; padding-bottom: 50px;" [src]="enderecoMap" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

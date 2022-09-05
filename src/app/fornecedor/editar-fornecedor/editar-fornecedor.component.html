@@ -1,0 +1,194 @@
+<div class="container main-container">
+	
+	<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-climbing-dot" fullScreen="true">
+		<p style="color: white">Carregando... </p>
+	</ngx-spinner>
+
+	<h4>Editar Fornecedor</h4>
+	<hr />
+	<form (ngSubmit)="editarFornecedor()" [formGroup]="fornecedorForm">
+
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label class="control-label"></label>
+				<input class="form-control" />
+				<span class="text-danger"></span>
+
+				<label class="control-label"></label>
+				<input class="form-control" />
+				<span class="text-danger"></span>
+			</div>
+
+			<div class="form-group col-md-6">
+				<label></label>
+				<div>
+					<input type="radio" value="1" /> Pessoa Física<br />
+					<input type="radio" value="2" /> Pessoa Jurídica
+				</div>
+				<div>
+					&nbsp;
+				</div>
+				<div class="form-check">
+					<label class="form-check-label">
+						<input class="form-check-input" /> Ativo?
+					</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<input type="submit" value="Atualizar" class="btn btn-primary" />
+		</div>
+
+		<hr />
+		<h4>
+			Endereço
+		</h4>
+
+		<table class="table table-hover">
+			<thead class="thead-dark">
+				<tr>
+					<th>
+						Logradouro
+					</th>
+					<th>
+						Numero
+					</th>
+					<th>
+						Complemento
+					</th>
+					<th>
+						CEP
+					</th>
+					<th>
+						Bairro
+					</th>
+					<th>
+						Cidade
+					</th>
+					<th>
+						Estado
+					</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						{{fornecedor.endereco.logradouro}}
+					</td>
+					<td>
+						{{fornecedor.endereco.numero}}
+					</td>
+					<td>
+						{{fornecedor.endereco.complemento}}
+					</td>
+					<td>
+						{{fornecedor.endereco.cep}}
+					</td>
+					<td>
+						{{fornecedor.endereco.bairro}}
+					</td>
+					<td>
+						{{fornecedor.endereco.cidade}}
+					</td>
+					<td>
+						{{fornecedor.endereco.uf}}
+					</td>
+					<td>
+						<a class="btn btn-info" href="javascript:void(0)" (click)="abrirModal(content)"><i
+								title="Editar" class="fa fa-pencil-alt"></i></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+
+	<ng-template #content let-c="close" led-d="dismiss">
+		<div class="modal-header">
+			<h4 class="modal-title" id="modal-basic-title">Atualizar Endereço</h4>
+			<button type="button" class="close" aria-label="Close" (click)="d('')">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+
+		<form (ngSubmit)="editarEndereco()" [formGroup]="enderecoForm">
+			<div class="modal-body">
+				<div class="alert alert-danger" *ngIf="errorsEndereco.length > 0">
+					<h3 id="msgRetorno">Ops! Algo deu errado!</h3>
+					<ul>
+						<li *ngFor="let error of errorsEndereco">{{ error }}</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">CEP</label>
+				<div>
+					<input type="text" class="form-control" id="cep">
+					<span class="text-danger" *ngIf="displayMessage.cep"></span>
+					<p [innerHTML]="displayMessage.cep"></p>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">Logradouro</label>
+				<div>
+					<input type="text" class="form-control" id="logradouro">
+					<span class="text-danger" *ngIf="displayMessage.logradouro"></span>
+					<p [innerHTML]="displayMessage.logradouro"></p>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">Número</label>
+				<div>
+					<input type="text" class="form-control" id="numero">
+					<span class="text-danger" *ngIf="displayMessage.numero"></span>
+					<p [innerHTML]="displayMessage.numero"></p>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">Complemento</label>
+				<div>
+					<input type="text" class="form-control" id="complemento">
+					<span class="text-danger" *ngIf="displayMessage.complemento"></span>
+					<p [innerHTML]="displayMessage.complemento"></p>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">Bairro</label>
+				<div>
+					<input type="text" class="form-control" id="bairro">
+					<span class="text-danger" *ngIf="displayMessage.bairro"></span>
+					<p [innerHTML]="displayMessage.bairro"></p>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">Cidade</label>
+				<div>
+					<input type="text" class="form-control" id="cidade">
+					<span class="text-danger" *ngIf="displayMessage.cidade"></span>
+					<p [innerHTML]="displayMessage.cidade"></p>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">Estado</label>
+				<div>
+					<input type="text" class="form-control" id="estado">
+					<span class="text-danger" *ngIf="displayMessage.estado"></span>
+					<p [innerHTML]="displayMessage.estado"></p>
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<input type="submit" value="Atualzar" class="btn btn-primary">
+			</div>
+		</form>
+
+	</ng-template>
+</div>
